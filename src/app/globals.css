@@ -3,24 +3,132 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --accent: #7448FF;
+  --accent-foreground: #9372ff;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-inter: var(--font-inter);
+  --font-syne: var(--font-syne); 
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Inter, sans-serif;
+}
+.bg-fundo {
+  
+background: linear-gradient(180deg,rgba(116, 72, 255, 1) 0%, rgba(116, 72, 255, 1) 87%, rgba(255, 255, 255, 0.84) 100%);
+}
+
+.container {
+  width: min(100% - 20px, 1480px);
+  margin-inline: auto;
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 12s linear infinite;
+}.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}@keyframes scroll {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.animate-scroll {
+  animation-name: scroll;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes moveGrid {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(40px, 40px);
+  }
+}
+
+/* Animações para o portfólio */
+.portfolio-card {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.portfolio-card:hover .portfolio-image {
+  transform: rotateY(5deg) rotateX(2deg);
+}
+
+.portfolio-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio-shimmer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.8s ease;
+}
+
+.portfolio-shimmer:hover::before {
+  left: 100%;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.portfolio-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.portfolio-float:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.portfolio-float:nth-child(3) {
+  animation-delay: 1s;
+}
+
+.portfolio-float:nth-child(4) {
+  animation-delay: 1.5s;
 }
