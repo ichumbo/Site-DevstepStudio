@@ -633,7 +633,7 @@ export default function Home() {
 
         <motion.div
           ref={ref}
-          className="bg-zinc-900 py-10 md:py-20 mt-28 mb-24" 
+          className="bg-zinc-900 py-10 md:py-20 mb-24" 
           initial="closed"
           animate={controls}
         >
