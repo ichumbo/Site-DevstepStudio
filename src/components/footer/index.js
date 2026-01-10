@@ -62,7 +62,7 @@ export const Footer = () => {
                                 whileHover={{ x: 4, color: "#a78bfa" }}
                                 transition={{ type: "spring", stiffness: 400, damping: 12 }}
                             >
-                                <Link href="#cases" className="text-zinc-300 transition-colors">
+                                <Link href="#cases" className="text-[#7448ff] transition-colors">
                                     Cases
                                 </Link>
                             </motion.li>
@@ -70,7 +70,7 @@ export const Footer = () => {
                                 whileHover={{ x: 4, color: "#a78bfa" }}
                                 transition={{ type: "spring", stiffness: 400, damping: 12 }}
                             >
-                                <Link href="#faq" className="text-zinc-300 transition-colors">
+                                <Link href="#faq" className="text-[#7448ff] transition-colors">
                                     Dúvidas
                                 </Link>
                             </motion.li>
@@ -78,7 +78,7 @@ export const Footer = () => {
                                 whileHover={{ x: 4, color: "#a78bfa" }}
                                 transition={{ type: "spring", stiffness: 400, damping: 12 }}
                             >
-                                <Link  href="https://wa.link/kdl2a4" className="text-zinc-300 transition-colors">
+                                <Link  href="https://wa.link/kdl2a4" className="text-[#7448ff] transition-colors">
                                     Contato
                                 </Link>
                             </motion.li>

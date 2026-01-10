@@ -1,208 +1,90 @@
 "use client";
-
-import { motion, useAnimation } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { Search, PenTool, Code2, Rocket } from "lucide-react";
 
 const steps = [
   {
-    id: 1,
-    title: "Kick-off",
-    desc: "Reunião para extrair todas as informações importantes sobre o projeto.",
+    title: "Briefing",
+    text: "Onde a ideia nasce e o caos vira estratégia.",
+    icon: <Search className="w-5 h-5" />,
+    color: "#7C3AED"
   },
   {
-    id: 2,
-    title: "Wireframe",
-    desc: "Estrutura básica para validar a navegação e fluxo do produto.",
-  },
-  {
-    id: 3,
     title: "Design",
-    desc: "Criação da identidade visual e layout final.",
+    text: "Interfaces que saltam aos olhos e convertem.",
+    icon: <PenTool className="w-5 h-5" />,
+    color: "#A855F7"
   },
   {
-    id: 4,
-    title: "Front-end",
-    desc: "Desenvolvimento da interface visual do projeto.",
+    title: "Dev",
+    text: "Código limpo transformado em performance bruta.",
+    icon: <Code2 className="w-5 h-5" />,
+    color: "#C084FC"
   },
   {
-    id: 5,
-    title: "Back-end",
-    desc: "Implementação da lógica, APIs e banco de dados.",
-  },
-  {
-    id: 6,
-    title: "SEO e Otimização",
-    desc: "Ajustes para performance e indexação.",
-  },
-  {
-    id: 7,
-    title: "Vídeo explicativo",
-    desc: "Criação de um vídeo que apresenta o produto.",
-  },
+    title: "Go Live",
+    text: "O salto para o sucesso. Monitorado e seguro.",
+    icon: <Rocket className="w-5 h-5" />,
+    color: "#7C3AED"
+  }
 ];
 
-export default function Processo() {
-  const containerRef = useRef(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isUserInteracting, setIsUserInteracting] = useState(false);
-  const [isAutoScrolling, setIsAutoScrolling] = useState(false);
-
-  // Scroll suave até o card ativo
-  const scrollToCard = (index, smooth = true) => {
-    const container = containerRef.current;
-    if (!container) return;
-    const cards = container.querySelectorAll(".process-card");
-    const card = cards[index];
-    if (card) {
-      const scrollLeft =
-        card.offsetLeft - container.offsetWidth / 2 + card.offsetWidth / 2;
-      setIsAutoScrolling(true);
-      container.scrollTo({
-        left: scrollLeft,
-        behavior: smooth ? "smooth" : "auto",
-      });
-      setTimeout(() => setIsAutoScrolling(false), 800);
-      setActiveIndex(index);
-    }
-  };
-
-  const handleNext = () => {
-    const next = (activeIndex + 1) % steps.length;
-    scrollToCard(next);
-  };
-
-  const handlePrev = () => {
-    const prev = (activeIndex - 1 + steps.length) % steps.length;
-    scrollToCard(prev);
-  };
-
-  // Detecta scroll manual
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    let timeout;
-    const handleUserScroll = () => {
-      if (isAutoScrolling) return;
-      setIsUserInteracting(true);
-      clearTimeout(timeout);
-      timeout = setTimeout(() => setIsUserInteracting(false), 4000);
-
-      // Calcula o card mais centralizado
-      const cards = Array.from(container.querySelectorAll(".process-card"));
-      let closestIndex = 0;
-      let closestDistance = Infinity;
-
-      cards.forEach((card, i) => {
-        const rect = card.getBoundingClientRect();
-        const containerRect = container.getBoundingClientRect();
-        const distance = Math.abs(
-          rect.left + rect.width / 2 - (containerRect.left + containerRect.width / 2)
-        );
-        if (distance < closestDistance) {
-          closestDistance = distance;
-          closestIndex = i;
-        }
-      });
-
-      setActiveIndex(closestIndex);
-    };
-
-    container.addEventListener("scroll", handleUserScroll);
-    return () => container.removeEventListener("scroll", handleUserScroll);
-  }, [isAutoScrolling]);
-
-  // Auto-scroll automático
-  useEffect(() => {
-    if (isUserInteracting) return;
-    const interval = setInterval(() => {
-      handleNext();
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [activeIndex, isUserInteracting]);
-
+export default function VerticalCards() {
   return (
-    <section className="relative text-zinc-950 px-2 sm:px-6">
-      <div className="relative h-[430px] sm:h-[450px]">
-        {/* Botões */}
-        <div className="hidden sm:flex">
-          <button
-            onClick={handlePrev}
-            className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 bg-accent p-2 sm:p-3 rounded-full shadow-md hover:opacity-80 transition z-40"
-          >
-            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-          </button>
-
-          <button
-            onClick={handleNext}
-            className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 bg-accent p-2 sm:p-3 rounded-full shadow-md hover:opacity-80 transition z-40"
-          >
-            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-          </button>
-        </div>
-
-        {/* Container de cards */}
-        <div
-          ref={containerRef}
-          className="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar px-2 items-center h-[430px] sm:h-[450px]"
+    <div className="relative flex flex-wrap lg:flex-nowrap gap-4 justify-center mt-24">
+      {steps.map((step, idx) => (
+        <motion.div
+          key={idx}
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: idx * 0.1 }}
+          className="clickable relative group flex-1 min-w-[280px] h-[400px]"
         >
-          {steps.map((step, i) => (
-            <AnimatedCard
-              key={step.id}
-              step={step}
-              index={i}
-              isActive={activeIndex === i}
-            />
-          ))}
-        </div>
+          {/* O Número Flutuante (Impacto) */}
+          <div className="absolute -top-12 left-8 z-20">
+            <span className="text-8xl font-black font-syne text-zinc-900/5 group-hover:text-[#7C3AED]/20 transition-all duration-500 italic">
+              0{idx + 1}
+            </span>
+          </div>
 
-        {/* Indicadores de progresso (mobile) */}
-        <div className="flex sm:hidden justify-center gap-2 mt-2">
-          {steps.map((_, i) => (
-            <motion.div
-              key={i}
-              className={`w-2 h-2 rounded-full ${
-                i === activeIndex ? "bg-accent" : "bg-zinc-500"
-              }`}
-              animate={{ scale: i === activeIndex ? 1.3 : 1 }}
-              transition={{ duration: 0.3 }}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
+          {/* O Card "Célula" */}
+          <div className="h-full w-full bg-white rounded-[3rem] border border-zinc-100 p-8 flex flex-col justify-between transition-all duration-500 group-hover:border-[#7C3AED] group-hover:shadow-[0_20px_40px_rgba(124,58,237,0.1)] relative overflow-hidden">
+            
+            {/* Detalhe Decorativo de Canto (Linha Tech) */}
+            <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-[#7C3AED]/10 to-transparent rounded-bl-full transition-transform duration-500 group-hover:scale-110" />
 
-function AnimatedCard({ step, index, isActive }) {
-  const controls = useAnimation();
+            {/* Topo do Card */}
+            <div className="relative z-10">
+              <div className="w-12 h-12 bg-black rounded-2xl flex items-center justify-center text-white mb-6 group-hover:bg-[#7C3AED] transition-colors duration-500">
+                {step.icon}
+              </div>
+              <h3 className="text-2xl font-extrabold text-black leading-tight mb-4 tracking-tighter">
+                {step.title}
+              </h3>
+            </div>
 
-  useEffect(() => {
-    controls.start(isActive ? "visible" : "hidden");
-  }, [isActive, controls]);
+            {/* Base do Card */}
+            <div className="relative z-10">
+              <p className="text-zinc-500 text-sm leading-relaxed mb-6 font-medium">
+                {step.text}
+              </p>
+              
+              {/* Barra de Progresso Visual no Card */}
+              <div className="w-full h-[2px] bg-zinc-100 relative overflow-hidden">
+                <motion.div 
+                  initial={{ x: "-100%" }}
+                  whileInView={{ x: "0%" }}
+                  transition={{ duration: 1, delay: idx * 0.2 }}
+                  className="absolute inset-0 bg-[#7C3AED]"
+                />
+              </div>
+            </div>
 
-  const variants = {
-    hidden: { opacity: 1, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-  };
-
-  return (
-    <motion.div
-      variants={variants}
-      initial="hidden"
-      animate={controls}
-      className={`process-card snap-center shrink-0 w-[250px] sm:w-[300px] p-5 sm:p-6 rounded-xl border border-gray-700 h-[320px] sm:h-[350px] flex flex-col justify-between transition-all duration-500 ${
-        isActive
-          ? "bg-accent text-white scale-105 shadow-2xl"
-          : "bg-zinc-800 text-gray-300 hover:scale-105"
-      }`}
-    >
-      <div>
-        <span className="text-sm font-semibold opacity-70">0{step.id}</span>
-        <h3 className="text-xl sm:text-2xl font-semibold mt-2">{step.title}</h3>
-      </div>
-      <p className="text-sm sm:text-base opacity-80">{step.desc}</p>
-    </motion.div>
+            {/* Efeito de "Luz" interna no Hover */}
+            <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-[#7C3AED] blur-[60px] opacity-0 group-hover:opacity-10 transition-opacity duration-500" />
+          </div>
+        </motion.div>
+      ))}
+    </div>
   );
 }

@@ -132,3 +132,202 @@ background: linear-gradient(180deg,rgba(116, 72, 255, 1) 0%, rgba(116, 72, 255, 
 .portfolio-float:nth-child(4) {
   animation-delay: 1.5s;
 }
+
+/* Efeitos para a seção refinada do portfólio */
+.clickable {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.clickable:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(124, 58, 237, 0.15);
+}
+
+/* Gradiente dinâmico para tipografia */
+.gradient-text {
+  background: linear-gradient(135deg, #1f2937 0%, #4b5563 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Efeito de profundidade para cards flutuantes */
+.floating-card {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Animação de shimmer para elementos */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(124, 58, 237, 0.1),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.shimmer:hover::before {
+  left: 100%;
+}
+
+/* Estilos para Timeline Dinâmica - Seção de Processo */
+.process-timeline-card {
+  position: relative;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.process-timeline-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.3), transparent, rgba(124, 58, 237, 0.1));
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask-composite: xor;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.process-timeline-card:hover::before {
+  opacity: 1;
+}
+
+/* Efeito de glow para ícones */
+.icon-glow {
+  position: relative;
+}
+
+.icon-glow::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.4) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.group:hover .icon-glow::after {
+  opacity: 1;
+}
+
+/* Animação de pulsação para números gigantes */
+@keyframes number-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.1;
+  }
+  50% {
+    transform: scale(1.02);
+    opacity: 0.15;
+  }
+}
+
+.number-giant {
+  animation: number-pulse 4s ease-in-out infinite;
+}
+
+.group:hover .number-giant {
+  animation-play-state: paused;
+  opacity: 0.2;
+}
+
+/* Estilos para Células de DNA Digital */
+.dna-cell {
+  position: relative;
+  background: linear-gradient(145deg, #ffffff 0%, #fafafa 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.dna-cell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), transparent, rgba(124, 58, 237, 0.05));
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask-composite: xor;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.dna-cell:hover::before {
+  opacity: 1;
+}
+
+/* Efeito de progress bar animada */
+.progress-bar {
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.3), transparent);
+  transform: translateX(-100%);
+  animation: shimmer-progress 2s ease-in-out infinite;
+}
+
+@keyframes shimmer-progress {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Número flutuante com efeito de profundidade */
+.floating-number {
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  filter: drop-shadow(0 2px 4px rgba(124, 58, 237, 0.1));
+}
+
+/* Efeito de glow suave para ícones das células */
+.cell-icon {
+  position: relative;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cell-icon::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: inherit;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.2) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.group:hover .cell-icon::before {
+  opacity: 1;
+}
