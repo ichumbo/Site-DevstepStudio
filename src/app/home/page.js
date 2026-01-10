@@ -289,19 +289,22 @@ export default function Home() {
 
   const cards = [
     {
-        title: "Campanhas de Mídia Social",
-      text: "Crie e lance campanhas impressionantes de mídia social sem esforço com fluxos de trabalho automatizados.",
-      color: "bg-white  text-zinc-600 border-zinc-300",
+      title: "Campanhas de Mídia Social",
+      description: "Crie e lance campanhas impressionantes de mídia social sem esforço com fluxos de trabalho automatizados.",
+      icon: "📱",
+      image: "/images/cases/1.png"
     },
     {
       title: "Marketing com IA e Dados",
-      text: "Desenvolvemos estratégias completas que unem posicionamento de marca, conteúdo relevante e publicos junto com funil de vendas.",
-      color: "bg-white text-zinc-600 border-zinc-300  z-15",
+      description: "Desenvolvemos estratégias completas que unem posicionamento de marca, conteúdo relevante e publicos junto com funil de vendas.",
+      icon: "🤖",
+      image: "/images/cases/2.png"
     },
     {
       title: "Análise e Otimização de Resultados",
-      text: "Acompanhar métricas é essencial para crescer. Monitoramos o desempenho de cada campanha para o retorno dos lucros",
-      color: "bg-white  text-zinc-600   border-zinc-300",
+      description: "Acompanhar métricas é essencial para crescer. Monitoramos o desempenho de cada campanha para o retorno dos lucros",
+      icon: "📊",
+      image: "/images/cases/3.png"
     },
   ]; 
 
@@ -535,35 +538,382 @@ export default function Home() {
           <ScrollCarousel />
         </div>
 
+        {/* Seção de Turbinar */}
+        <section className="mt-20 lg:mt-28 relative bg-white overflow-hidden">
+          <div className="container py-20">
+            {/* Título principal */}
+            <motion.div 
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="font-syne font-bold text-4xl md:text-6xl text-black leading-tight">
+                <span className="text-zinc-900">Turbine sua</span>                 <span style={{color: '#7448ff'}}>presença digital</span>
+              </h2>
+            </motion.div>
 
-        <section className="mt-20 lg:mt-28  relative   lqd-is-in-view">
-          <svg className="absolute -top-0 left-0 h-14 w-full rotate-0" width="1440" height="25" viewBox="0 0 1440 25" fill="#fff" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-            <path d="M0 0C576 33.3333 864 33.3333 1440 0H0Z"></path>
-          </svg>
+            {/* Subtítulo */}
+            <motion.p 
+              className="text-center text-lg text-zinc-600 mb-16 max-w-2xl mx-auto"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              Estratégias personalizadas que transformam sua marca em referência no mercado digital.
+            </motion.p>
 
-          <div className="container relative z-1 text-zinc-900 transition-all duration-700  ">
-            <h1 className="text-center font-bold font-syne text-4xl md:text-7xl w-8/12 mx-auto">Turbine sua
-              estratégia de marketing
-            </h1>
-            <FancyCards cards={cards} cardsRef={cardsRef} cardsControls={cardsControls} />
-            <div className="mx-auto  flex items-center justify-center">
-              <Button
-                ref={(el) => el && textRefs.current.push(el)}
-                color="purple"
-                size="small"
-                href="https://wa.link/kdl2a4"
-                className="flex  z-40 py-2.5"
+            {/* Cards deslizáveis com efeitos criativos */}
+            <motion.div 
+              className="relative mb-16 py-16"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              {/* Linha de onda animada atrás dos cards */}
+              <motion.svg 
+                className="absolute top-1/2 left-0 w-full h-20 -translate-y-1/2 z-0"
+                viewBox="0 0 1200 100"
+                initial={{ pathLength: 0, opacity: 0 }}
+                whileInView={{ pathLength: 1, opacity: 1 }}
+                viewport={{ once: false, amount: 0.3 }}
+                transition={{ duration: 3, ease: "easeInOut" }}
               >
-                Comece seu Projeto
+                <motion.path
+                  d="M0,50 Q300,10 600,50 T1200,50"
+                  stroke="#7448ff"
+                  strokeWidth="6"
+                  fill="none"
+                  animate={{
+                    d: [
+                      "M0,50 Q300,10 600,50 T1200,50",
+                      "M0,50 Q300,90 600,50 T1200,50",
+                      "M0,50 Q300,10 600,50 T1200,50"
+                    ]
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+              </motion.svg>
+              
+              <div className="flex gap-6 overflow-x-auto pb-8 pt-4 snap-x snap-mandatory scrollbar-hide relative z-10 justify-center">
+                <motion.div 
+                  className="flex-shrink-0 w-64 rounded-2xl p-6 transition-all duration-500 snap-center relative overflow-hidden group"
+                  style={{backgroundColor: '#7448ff'}}
+                  initial={{ rotateY: -30, opacity: 0, x: -200, scale: 0.8 }}
+                  whileInView={{ rotateY: 0, opacity: 1, x: 0, scale: 1 }}
+                  whileHover={{ 
+                    y: -15, 
+                    scale: 1.08, 
+                    rotateY: 8,
+                    rotateX: 5
+                  }}
+                  transition={{ 
+                    duration: 0.8, 
+                    type: "spring", 
+                    stiffness: 120,
+                    damping: 15
+                  }}
+                >
+                  <motion.div 
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"
+                    initial={{ x: "-100%", opacity: 0 }}
+                    whileHover={{ x: "100%", opacity: 1 }}
+                    transition={{ duration: 1.2, ease: "easeInOut" }}
+                  />
+                  
+                  <motion.div 
+                    className="w-12 h-12 bg-gradient-to-br from-white to-purple-100 rounded-2xl flex items-center justify-center mb-4 relative z-10"
+                    whileHover={{ 
+                      rotate: 360, 
+                      scale: 1.2,
+                      boxShadow: "0 0 20px rgba(255, 255, 255, 0.4)"
+                    }}
+                    transition={{ duration: 0.6, type: "spring" }}
+                  >
+                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" style={{color: '#7448ff'}}>
+                      <path d="M12 2L2 7v10c0 5.55 3.84 9.739 9 11 5.16-1.261 9-5.45 9-11V7l-10-5z"/>
+                    </svg>
+                  </motion.div>
+                  
+                  <motion.h3 
+                    className="font-bold text-lg text-white mb-3 relative z-10"
+                    whileHover={{ scale: 1.1, color: "#f3f4f6" }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    Estratégia
+                  </motion.h3>
+                  
+                  <motion.p 
+                    className="text-purple-100 text-sm leading-relaxed relative z-10"
+                    initial={{ opacity: 0.8 }}
+                    whileHover={{ opacity: 1, y: -2 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    Planejamento completo e personalizado para maximizar seus resultados no mercado digital.
+                  </motion.p>
+                  
+                  <motion.div 
+                    className="absolute top-4 right-4 w-2 h-2 bg-white rounded-full opacity-0 group-hover:opacity-80"
+                    animate={{ 
+                      y: [-8, 8, -8], 
+                      rotate: [0, 180, 360],
+                      scale: [1, 1.5, 1]
+                    }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                  />
+                </motion.div>
+                
+                <motion.div 
+                  className="flex-shrink-0 w-64 rounded-2xl p-6 transition-all duration-500 snap-center relative overflow-hidden group"
+                  style={{backgroundColor: '#7448ff'}}
+                  initial={{ rotateY: -30, opacity: 0, x: -200, scale: 0.8 }}
+                  whileInView={{ rotateY: 0, opacity: 1, x: 0, scale: 1 }}
+                  whileHover={{ 
+                    y: -15, 
+                    scale: 1.08, 
+                    rotateY: -8,
+                    rotateX: 5
+                  }}
+                  transition={{ 
+                    duration: 0.8, 
+                    delay: 0.1, 
+                    type: "spring", 
+                    stiffness: 120,
+                    damping: 15
+                  }}
+                >
+                  <motion.div 
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"
+                    initial={{ x: "-100%", opacity: 0 }}
+                    whileHover={{ x: "100%", opacity: 1 }}
+                    transition={{ duration: 1.2, ease: "easeInOut", delay: 0.1 }}
+                  />
+                  
+                  <motion.div 
+                    className="w-12 h-12 bg-gradient-to-br from-white to-purple-100 rounded-2xl flex items-center justify-center mb-4 relative z-10"
+                    whileHover={{ 
+                      rotate: -360, 
+                      scale: 1.2,
+                      boxShadow: "0 0 20px rgba(255, 255, 255, 0.4)"
+                    }}
+                    transition={{ duration: 0.6, type: "spring" }}
+                  >
+                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" style={{color: '#7448ff'}}>
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                  </motion.div>
+                  
+                  <motion.h3 
+                    className="font-bold text-lg text-white mb-3 relative z-10"
+                    whileHover={{ scale: 1.1, color: "#f3f4f6" }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    Execução
+                  </motion.h3>
+                  
+                  <motion.p 
+                    className="text-purple-100 text-sm leading-relaxed relative z-10"
+                    initial={{ opacity: 0.8 }}
+                    whileHover={{ opacity: 1, y: -2 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    Implementação precisa e eficiente de cada etapa do seu projeto digital.
+                  </motion.p>
+                  
+                  <motion.div 
+                    className="absolute top-6 right-6 w-1.5 h-1.5 bg-white rounded-full opacity-0 group-hover:opacity-80"
+                    animate={{ 
+                      scale: [1, 2, 1], 
+                      opacity: [0.3, 0.9, 0.3],
+                      rotate: [0, 180, 360]
+                    }}
+                    transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}
+                  />
+                </motion.div>
+                
+                <motion.div 
+                  className="flex-shrink-0 w-64 rounded-2xl p-6 transition-all duration-500 snap-center relative overflow-hidden group"
+                  style={{backgroundColor: '#7448ff'}}
+                  initial={{ rotateY: -30, opacity: 0, x: -200, scale: 0.8 }}
+                  whileInView={{ rotateY: 0, opacity: 1, x: 0, scale: 1 }}
+                  whileHover={{ 
+                    y: -15, 
+                    scale: 1.08, 
+                    rotateY: 8,
+                    rotateX: 5
+                  }}
+                  transition={{ 
+                    duration: 0.8, 
+                    delay: 0.2, 
+                    type: "spring", 
+                    stiffness: 120,
+                    damping: 15
+                  }}
+                >
+                  <motion.div 
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"
+                    initial={{ x: "-100%", opacity: 0 }}
+                    whileHover={{ x: "100%", opacity: 1 }}
+                    transition={{ duration: 1.2, ease: "easeInOut", delay: 0.2 }}
+                  />
+                  
+                  <motion.div 
+                    className="w-12 h-12 bg-gradient-to-br from-white to-purple-100 rounded-2xl flex items-center justify-center mb-4 relative z-10"
+                    whileHover={{ 
+                      rotate: 360, 
+                      scale: 1.2,
+                      boxShadow: "0 0 20px rgba(255, 255, 255, 0.4)"
+                    }}
+                    transition={{ duration: 0.6, type: "spring" }}
+                  >
+                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" style={{color: '#7448ff'}}>
+                      <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/>
+                    </svg>
+                  </motion.div>
+                  
+                  <motion.h3 
+                    className="font-bold text-lg text-white mb-3 relative z-10"
+                    whileHover={{ scale: 1.1, color: "#f3f4f6" }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    Resultados
+                  </motion.h3>
+                  
+                  <motion.p 
+                    className="text-purple-100 text-sm leading-relaxed relative z-10"
+                    initial={{ opacity: 0.8 }}
+                    whileHover={{ opacity: 1, y: -2 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    Métricas claras e crescimento sustentável para o seu negócio.
+                  </motion.p>
+                  
+                  <motion.div 
+                    className="absolute bottom-4 right-4 w-3 h-3 bg-white rounded-full opacity-0 group-hover:opacity-80"
+                    animate={{ 
+                      x: [-4, 4, -4], 
+                      y: [-3, 3, -3],
+                      scale: [1, 1.5, 1]
+                    }}
+                    transition={{ duration: 4, repeat: Infinity }}
+                  />
+                </motion.div>
+
+                <motion.div 
+                  className="flex-shrink-0 w-64 rounded-2xl p-6 transition-all duration-500 snap-center relative overflow-hidden group"
+                  style={{backgroundColor: '#7448ff'}}
+                  initial={{ rotateY: -30, opacity: 0, x: -200, scale: 0.8 }}
+                  whileInView={{ rotateY: 0, opacity: 1, x: 0, scale: 1 }}
+                  whileHover={{ 
+                    y: -15, 
+                    scale: 1.08, 
+                    rotateY: -8,
+                    rotateX: 5
+                  }}
+                  transition={{ 
+                    duration: 0.8, 
+                    delay: 0.3, 
+                    type: "spring", 
+                    stiffness: 120,
+                    damping: 15
+                  }}
+                >
+                  <motion.div 
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"
+                    initial={{ x: "-100%", opacity: 0 }}
+                    whileHover={{ x: "100%", opacity: 1 }}
+                    transition={{ duration: 1.2, ease: "easeInOut", delay: 0.3 }}
+                  />
+                  
+                  <motion.div 
+                    className="w-12 h-12 bg-gradient-to-br from-white to-purple-100 rounded-2xl flex items-center justify-center mb-4 relative z-10"
+                    whileHover={{ 
+                      rotate: -360, 
+                      scale: 1.2,
+                      boxShadow: "0 0 20px rgba(255, 255, 255, 0.4)"
+                    }}
+                    transition={{ duration: 0.6, type: "spring" }}
+                  >
+                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" style={{color: '#7448ff'}}>
+                      <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                  </motion.div>
+                  
+                  <motion.h3 
+                    className="font-bold text-lg text-white mb-3 relative z-10"
+                    whileHover={{ scale: 1.1, color: "#f3f4f6" }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    Suporte
+                  </motion.h3>
+                  
+                  <motion.p 
+                    className="text-purple-100 text-sm leading-relaxed relative z-10"
+                    initial={{ opacity: 0.8 }}
+                    whileHover={{ opacity: 1, y: -2 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    Acompanhamento contínuo e suporte especializado em todas as etapas.
+                  </motion.p>
+                  
+                  <motion.div 
+                    className="absolute top-8 left-6 w-1 h-1 bg-white rounded-full opacity-0 group-hover:opacity-80"
+                    animate={{ 
+                      scale: [1, 3, 1], 
+                      rotate: [0, 180, 360],
+                      opacity: [0.3, 0.9, 0.3]
+                    }}
+                    transition={{ duration: 3.5, repeat: Infinity, delay: 1 }}
+                  />
+                </motion.div>
+              </div>
+            </motion.div>
+
+            {/* CTA */}
+            <motion.div 
+              className="flex justify-center"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              <Button
+                color="purple"
+                size="medium"
+                href="https://wa.link/kdl2a4"
+                className="inline-flex items-center gap-2 py-3 px-6 shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                <Target className="w-5 h-5" /> Começar agora
               </Button>
-            </div>
+            </motion.div>
           </div>
         </section>
 
         {/* Seção do Portfólio */}
-        <section ref={portfolioRef} className="relative overflow-hidden mt-20 lg:mt-28" style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)' }}>
+        <motion.section 
+          ref={portfolioRef} 
+          className="relative overflow-hidden mt-20 lg:mt-28" 
+          style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)' }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 1 }}
+        >
           {/* Background de grade animado */}
-          <div className="absolute inset-0 opacity-40">
+          <motion.div 
+            className="absolute inset-0 opacity-40"
+            initial={{ scale: 0.8, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 0.4 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 1.2, delay: 0.2 }}
+          >
             <div 
               className="w-full h-full"
               style={{
@@ -575,61 +925,139 @@ export default function Home() {
                 animation: 'moveGrid 20s linear infinite'
               }}
             ></div>
-          </div>
+          </motion.div>
           
-          {/* Elementos decorativos */}
-          <div className="absolute top-10 left-10 w-20 h-20 bg-purple-200 rounded-full opacity-30 blur-xl"></div>
-          <div className="absolute bottom-10 right-10 w-32 h-32 bg-blue-200 rounded-full opacity-20 blur-2xl"></div>
-          <div className="absolute top-1/2 left-1/4 w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
-          <div className="absolute top-1/3 right-1/3 w-1 h-1 bg-blue-400 rounded-full animate-pulse delay-1000"></div>
+          {/* Elementos decorativos animados */}
+          <motion.div 
+            className="absolute top-10 left-10 w-20 h-20 bg-purple-200 rounded-full opacity-30 blur-xl"
+            initial={{ scale: 0, x: -100 }}
+            whileInView={{ scale: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          ></motion.div>
+          <motion.div 
+            className="absolute bottom-10 right-10 w-32 h-32 bg-blue-200 rounded-full opacity-20 blur-2xl"
+            initial={{ scale: 0, x: 100 }}
+            whileInView={{ scale: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          ></motion.div>
+          <motion.div 
+            className="absolute top-1/2 left-1/4 w-2 h-2 bg-purple-400 rounded-full animate-pulse"
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          ></motion.div>
+          <motion.div 
+            className="absolute top-1/3 right-1/3 w-1 h-1 bg-blue-400 rounded-full animate-pulse delay-1000"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          ></motion.div>
           
           <div className="flex items-center justify-between relative z-10 h-full min-h-[600px] w-full">
             {/* Conteúdo à esquerda */}
             <div className="w-1/2 pr-12" style={{ paddingLeft: '125px' }}>
-              <div className="mb-4">
+              <motion.div 
+                className="mb-4"
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false, amount: 0.3 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
                 <span className="inline-flex items-center gap-2 px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-medium">
                   <Sparkles className="w-4 h-4" /> Projetos Exclusivos
                 </span>
-              </div>
-              <h2 ref={portfolioTitleRef} className="text-4xl md:text-6xl font-bold font-syne text-zinc-800 mb-6">
-                Conheça Meu <span className="text-purple-600">Portfólio</span>
-              </h2>
-              <p ref={portfolioTextRef} className="text-lg text-zinc-600 mb-8">
-                <TrendingUp className="inline w-5 h-5 mr-2" />Explore projetos reais que transformaram negócios e geraram resultados incríveis para meus clientes.
-              </p>
-              
-              
-              <Button
-                ref={portfolioButtonRef}
-                color="purple"
-                size="medium"
-                href="https://devstep-portifolio.netlify.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 py-3 px-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+              </motion.div>
+              <motion.h2 
+                ref={portfolioTitleRef} 
+                className="text-4xl md:text-6xl font-bold font-syne text-zinc-800 mb-6"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.3 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
               >
-                <Target className="w-5 h-5" /> Acessar Portfólio
-              </Button>
+                Conheça Nosso Portfólio
+              </motion.h2>
+              <motion.p 
+                ref={portfolioTextRef} 
+                className="text-lg text-zinc-600 mb-8"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.3 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+              >
+                <TrendingUp className="inline w-5 h-5 mr-2" />Explore projetos reais que transformaram negócios e geraram resultados incríveis para meus clientes.
+              </motion.p>
+              
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: false, amount: 0.3 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button
+                  ref={portfolioButtonRef}
+                  color="purple"
+                  size="medium"
+                  href="https://devstep-portifolio.netlify.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 py-3 px-6 shadow-lg hover:shadow-xl transition-all duration-300"
+                >
+                  <Target className="w-5 h-5" /> Acessar Portfólio
+                </Button>
+              </motion.div>
             </div>
 
             {/* Hero Banner à direita */}
-            <div className="w-1/2 h-full">
+            <motion.div 
+              className="w-1/2 h-full"
+              initial={{ opacity: 0, x: 100, scale: 0.8 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ duration: 1, delay: 0.4 }}
+            >
               <div className="hero-banner-container relative w-full h-full">
-                <img
+                <motion.img
                   src="/images/hero-banner.png"
                   alt="Hero Banner"
                   className="hero-banner w-full h-full object-cover object-right-bottom"
                   style={{ margin: 0, padding: 0 }}
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
                 />
                 
-                {/* Efeitos decorativos menores */}
-                <div className="absolute top-1/4 left-4 w-2 h-2 bg-violet-400 rounded-full animate-ping"></div>
-                <div className="absolute bottom-1/3 right-4 w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse"></div>
-                <div className="absolute top-2/3 left-8 w-1 h-1 bg-purple-400 rounded-full animate-bounce"></div>
+                {/* Efeitos decorativos menores animados */}
+                <motion.div 
+                  className="absolute top-1/4 left-4 w-2 h-2 bg-violet-400 rounded-full animate-ping"
+                  initial={{ opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: false, amount: 0.3 }}
+                  transition={{ duration: 0.4, delay: 0.8 }}
+                ></motion.div>
+                <motion.div 
+                  className="absolute bottom-1/3 right-4 w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse"
+                  initial={{ opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: false, amount: 0.3 }}
+                  transition={{ duration: 0.4, delay: 0.9 }}
+                ></motion.div>
+                <motion.div 
+                  className="absolute top-2/3 left-8 w-1 h-1 bg-purple-400 rounded-full animate-bounce"
+                  initial={{ opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: false, amount: 0.3 }}
+                  transition={{ duration: 0.4, delay: 1 }}
+                ></motion.div>
               </div>
-            </div>
+            </motion.div>
           </div>
-        </section>
+        </motion.section>
 
         <motion.div
           ref={ref}
