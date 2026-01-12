@@ -83,10 +83,7 @@ export default function AssetGrid() {
       <div className="container mx-auto px-6">
         
         <div className="max-w-3xl mb-24">
-          <div className="flex items-center gap-2 text-purple-600 font-bold mb-4">
-            <Sparkles size={18} className="animate-pulse" />
-            <span className="uppercase tracking-[0.2em] text-[10px]">Recursos Criativos</span>
-          </div>
+          <span className="text-[#7448ff] font-bold text-xs uppercase tracking-[0.5em] mb-4" style={{opacity: 1, transform: 'none'}}>Trabalhos Selecionados</span>
           <h2 className="text-5xl md:text-7xl font-extrabold font-syne text-zinc-900 leading-none">
             Todo tipo de recurso para <br />
             <span className="text-[#7448ff] italic">o seu sucesso.</span>

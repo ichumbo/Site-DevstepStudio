@@ -1,72 +1,82 @@
 "use client";
 import { motion } from "framer-motion";
-import { Search, PenTool, Code2, Rocket } from "lucide-react";
 
-const steps = [
-  {
-    number: "01",
-    title: "Estratégia",
-    text: "Mapeamos o seu mercado para criar uma fundação sólida.",
-    icon: <Search size={20} />,
-  },
-  {
-    number: "02",
-    title: "Design UX",
-    text: "Interfaces focadas em conversão e estética premium.",
-    icon: <PenTool size={20} />,
-    isFeatured: true // Este card terá a escala aumentada
-  },
-  {
-    number: "03",
-    title: "Dev Elite",
-    text: "Código limpo, rápido e otimizado para performance.",
-    icon: <Code2 size={20} />,
-  },
-  {
-    number: "04",
-    title: "Lançamento",
-    text: "O salto final para o sucesso do seu negócio digital.",
-    icon: <Rocket size={20} />,
-  },
+const items = [
+  { title: "Estratégia", img: "/images/Nossas coleções/1.png", tag: "01" },
+  { title: "Criação", img: "/images/Nossas coleções/2.png", tag: "02" },
+  { title: "Domínio", img: "/images/Nossas coleções/3.png", tag: "03" },
 ];
 
-export default function VerticalCards() {
+export default function VerticalCards({ theme = "light" }) {
+  const isDark = theme === "dark";
+  
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-center mt-20">
-      {steps.map((step, idx) => (
-        <motion.div
-          key={idx}
-          initial={{ opacity: 0, y: 20 }}
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+      {items.map((item, index) => (
+        <motion.div 
+          key={index}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: idx * 0.1 }}
-          className={`relative z-10 ${step.isFeatured ? 'lg:scale-110 z-20' : ''}`}
+          transition={{ duration: 0.8, delay: index * 0.2 }}
+          className="group relative"
         >
-          {/* Card Quadrado Estilo Envato */}
-          <div className="bg-white border border-zinc-200 p-8 h-[320px] flex flex-col justify-between transition-colors hover:border-[#7C3AED] group clickable">
+          {/* Card com Border Radius Alto e Shadow Box */}
+          <div className={`
+            relative h-[450px] w-full 
+            rounded-[2.5rem] 
+            overflow-hidden 
+            ${isDark ? 'bg-white/10 border border-white/20' : 'bg-zinc-50 border border-zinc-200'} 
+            ${isDark ? 'shadow-[0_20px_50px_rgba(0,0,0,0.5)]' : 'shadow-[0_20px_50px_rgba(0,0,0,0.3)]'}
+            ${isDark ? 'group-hover:border-white/40' : 'group-hover:border-[#7448ff]/50'} 
+            transition-all duration-500 
+            hover:-translate-y-2
+          `}>
             
-            {/* Topo: Ícone e Número */}
-            <div className="flex justify-between items-start">
-              <div className="w-10 h-10 bg-black text-white flex items-center justify-center group-hover:bg-[#7C3AED] transition-colors">
-                {step.icon}
-              </div>
-              <span className="text-4xl font-black font-syne text-zinc-100 group-hover:text-[#7C3AED]/10 transition-colors">
-                {step.number}
+            {/* Cortina de Revelação */}
+            <motion.div 
+              initial={{ scaleY: 1 }}
+              whileInView={{ scaleY: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, ease: [0.65, 0, 0.35, 1], delay: 0.3 + index * 0.1 }}
+              className={`absolute inset-0 z-20 origin-top ${isDark ? 'bg-white' : 'bg-[#7448ff]'}`}
+            />
+
+            {/* Imagem com Zoom Sutil */}
+            <img 
+              src={item.img} 
+              alt={item.title}
+              className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-[1.5s] ease-in-out"
+            />
+
+            {/* Badge Flutuante */}
+            <div className="absolute top-6 left-6 z-30 opacity-0 group-hover:opacity-100 transition-all duration-500 -translate-y-4 group-hover:translate-y-0">
+              <span className={`
+                ${isDark ? 'bg-black/90 text-white border-white/20' : 'bg-white/90 text-black border-zinc-200'} 
+                backdrop-blur-md font-bold text-xs py-2 px-4 rounded-full border
+              `}>
+                {item.tag} — EXPLORAR
               </span>
             </div>
 
-            {/* Conteúdo: Título e Texto */}
-            <div>
-              <h3 className="text-xl font-bold text-black mb-3 tracking-tight uppercase">
-                {step.title}
-              </h3>
-              <p className="text-zinc-500 text-sm leading-relaxed font-medium">
-                {step.text}
-              </p>
-            </div>
+            {/* Gradient Glow interno */}
+            <div className={`
+              absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500
+              ${isDark ? 'bg-gradient-to-t from-white/20 to-transparent' : 'bg-gradient-to-t from-[#7448ff]/20 to-transparent'}
+            `} />
+          </div>
 
-            {/* Linha de Progresso Técnica na Base */}
-            <div className="w-full h-[1px] bg-zinc-100 relative overflow-hidden">
-              <div className="absolute inset-0 bg-[#7C3AED] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-700" />
+          {/* Texto Inferior Dinâmico */}
+          <div className="mt-6 flex items-center justify-between">
+            <h4 className={`font-syne font-bold text-xl tracking-tight ${isDark ? 'text-white' : 'text-black'}`}>
+              {item.title}
+            </h4>
+            <div className={`
+              w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300
+              ${isDark ? 'border border-white/30 group-hover:bg-white group-hover:text-black' : 'border border-zinc-200 group-hover:bg-black group-hover:text-white'}
+            `}>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+              </svg>
             </div>
           </div>
         </motion.div>

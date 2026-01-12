@@ -17,6 +17,7 @@ import PurpleScrollSection from "@/modules/home/purple";
 import ProjectsGallery from "@/modules/home/gallery";
 import CreativeAssets from "@/components/CreativeAssets";
 import AugeShowcase from "@/components/AugeShowcase";
+import PortfolioSection from "@/components/PortfolioSection";
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -607,7 +608,7 @@ export default function Home() {
 
         <CreativeAssets />
 
-
+        <PortfolioSection />
 
         {/* Seção Showcase: Pack de Artes Academia */}
         <section className="relative py-32 bg-[#050505] overflow-hidden font-syne">
@@ -691,6 +692,13 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
+                <motion.span 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  className="text-[#7448ff] font-bold text-xs uppercase tracking-[0.5em] mb-4 block"
+                >
+                  Artes
+                </motion.span>
                 <h2 className="font-syne font-extrabold text-6xl md:text-8xl text-black tracking-tighter leading-[0.85]">
                   Nossas <br />
                   <span className="text-[#7448ff] italic">Coleções.</span>
@@ -732,55 +740,55 @@ export default function Home() {
               <CollectionItem
                 span="md:col-span-8"
                 height="h-[350px] md:h-[550px]"
-                tag="Finance & Tax"
-                title="Contabilidade Digital"
-                img="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=1200"
+                tag="Auto-Escola"
+                title="Auto-Escola"
+                img="images/Nossas coleções/1.png"
               />
               <CollectionItem
                 span="md:col-span-4"
                 height="h-[350px] md:h-[550px]"
-                tag="Fitness"
-                title="Academia & Performance"
-                img="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=800"
+                tag="Placa Solar"
+                title="Placa Solar"
+                img="images/Nossas coleções/2.png"
               />
 
               {/* LINHA 2: 5 + 7 */}
               <CollectionItem
                 span="md:col-span-5"
                 height="h-[350px] md:h-[450px]"
-                tag="Gastronomia"
-                title="Sushi Experience"
-                img="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&q=80&w=1000"
+                tag="Açaiteria"
+                title="Açaiteria"
+                img="images/Nossas coleções/3.png"
               />
               <CollectionItem
                 span="md:col-span-7"
                 height="h-[350px] md:h-[450px]"
-                tag="Healthy Food"
-                title="Açaí Concept Store"
-                img="https://images.unsplash.com/photo-1590301157890-4810ed352733?auto=format&fit=crop&q=80&w=1200"
+                tag="Loja de Roupa"
+                title="Loja de Roupa"
+                img="images/Nossas coleções/4.png"
               />
 
               {/* LINHA 3: 4 + 4 + 4 */}
               <CollectionItem
                 span="md:col-span-4"
                 height="h-[300px] md:h-[350px]"
-                tag="Pet Care"
-                title="Pet Shop Moderno"
-                img="https://images.unsplash.com/photo-1597811905470-4d567df48443?auto=format&fit=crop&q=80&w=600"
+                tag="Pet Shop"
+                title="Pet Shop"
+                img="images/Nossas coleções/5.png"
               />
               <CollectionItem
                 span="md:col-span-4"
                 height="h-[300px] md:h-[350px]"
-                tag="Real Estate"
-                title="Imobiliária Premium"
-                img="https://images.unsplash.com/photo-1554995207-c18c696e2e96?auto=format&fit=crop&q=80&w=600"
+                tag="Loja de construção"
+                title="Loja de construção"
+                img="images/Nossas coleções/6.png"
               />
               <CollectionItem
                 span="md:col-span-4"
                 height="h-[300px] md:h-[350px]"
-                tag="Software"
-                title="SaaS & Tech"
-                img="https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&q=80&w=600"
+                tag="Seguro"
+                title="Seguro"
+                img="images/Nossas coleções/7.png"
               />
             </motion.div>
           </div>
@@ -788,106 +796,50 @@ export default function Home() {
 
         <AugeShowcase />
 
-        <section className="bg-white py-32 relative overflow-hidden border-t border-zinc-50">
-          {/* Malha de fundo sutil */}
-          <div className="absolute inset-0 pointer-events-none opacity-[0.03]" 
-               style={{ backgroundImage: `radial-gradient(#000 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
+        {/* Seção Design em Movimento - Reestilizada */}
+        <section className="bg-[#7448ff] py-32 relative overflow-hidden border-t border-white/10">
+          
+          {/* Grade em Movimento Constante */}
+          <motion.div 
+            className="absolute inset-0 pointer-events-none opacity-[0.15]" 
+            style={{ 
+              backgroundImage: `
+                linear-gradient(to right, white 1px, transparent 1px),
+                linear-gradient(to bottom, white 1px, transparent 1px)
+              `,
+              backgroundSize: '60px 60px' 
+            }}
+            animate={{ 
+              backgroundPosition: ['0px 0px', '60px 60px'] 
+            }}
+            transition={{ 
+              duration: 8, 
+              ease: "linear", 
+              repeat: Infinity 
+            }}
+          />
 
-          <div className="container mx-auto px-6">
+          {/* Glow Decorativo para dar profundidade ao roxo */}
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-white/10 rounded-full blur-[120px] pointer-events-none" />
+
+          <div className="container mx-auto px-6 relative z-10">
             <div className="flex flex-col lg:flex-row items-end justify-between mb-16 gap-8">
               <div className="max-w-2xl">
-                <span className="text-[#7C3AED] font-bold text-xs uppercase tracking-[0.4em] mb-4 block">Workflow</span>
-                <h2 className="font-syne font-extrabold text-6xl md:text-7xl text-black tracking-tighter leading-[0.9]">
+                 <span className="text-blue-600 font-bold text-xs uppercase tracking-[0.5em] mb-6 block" style={{opacity: 1, transform: 'none'}}>
+                Site novo
+              </span>
+                {/* Mudança de cor dos textos para Branco (contraste com fundo roxo) */}
+                <h2 className="font-syne font-extrabold text-6xl md:text-7xl text-white tracking-tighter leading-[0.9]">
                   Design em <br /> 
-                  <span className="text-[#7448ff] italic">movimento constante.</span>
+                  <span className="text-black/100 italic">movimento constante.</span>
                 </h2>
               </div>
-              <p className="text-zinc-500 font-medium max-w-sm text-right lg:mb-4">
+              <p className="text-purple-100 font-medium max-w-sm text-right lg:mb-4">
                 Cada passo é milimetricamente planejado para que sua marca não apenas exista, mas domine.
               </p>
             </div>
 
-            <VerticalCards />
-          </div>
-        </section>
-        {/* Seção de Projetos Selecionados - Bento Grid Style */}
-        <section className="relative z-20 py-32 bg-white border-t border-zinc-100">
-          <div className="container mx-auto px-6">
-            {/* Header Minimalista */}
-            <div className="mb-20">
-              <motion.span
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                className="text-accent font-bold text-xs uppercase tracking-[0.3em] mb-4 block"
-              >
-                Selected Projects
-              </motion.span>
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                className="font-syne font-extrabold text-5xl md:text-7xl text-black tracking-tighter"
-              >
-                Trabalhos que <br />
-                <span className="text-[#7448ff]">geram impacto.</span>
-              </motion.h2>
-            </div>
-
-            {/* Grid de Projetos - Layout Invertido para Variedade Visual */}
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-12 gap-6"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.1 }}
-              variants={{
-                visible: { transition: { staggerChildren: 0.1 } }
-              }}
-            >
-              {/* 1. Projeto em Destaque (Invertido: Direita) */}
-              <CollectionItem
-                span="md:col-span-4"
-                height="h-[400px] md:h-[600px]"
-                tag="E-commerce"
-                title="Solbikes Store"
-                img="https://images.unsplash.com/photo-1532298229144-0ee0c97d1590?auto=format&fit=crop&q=80&w=800"
-              />
-              <CollectionItem
-                span="md:col-span-8"
-                height="h-[400px] md:h-[600px]"
-                tag="Corporate"
-                title="Montalto Advocacia"
-                img="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200"
-              />
-
-              {/* 2. Projetos Secundários (Trio de Encaixe) */}
-              <CollectionItem
-                span="md:col-span-6"
-                height="h-[450px]"
-                tag="Landing Page"
-                title="Nova Empresa Tech"
-                img="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1000"
-              />
-              <CollectionItem
-                span="md:col-span-6"
-                height="h-[450px]"
-                tag="Branding"
-                title="One Digital Studio"
-                img="https://images.unsplash.com/photo-1542744094-24638eff58bb?auto=format&fit=crop&q=80&w=1000"
-              />
-            </motion.div>
-
-            {/* CTA Final abaixo do grid */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="mt-20 flex justify-center"
-            >
-              <Button
-                href="#contato"
-                className="bg-black text-white px-12 py-6 rounded-full text-lg hover:scale-105 transition-transform"
-              >
-                Vamos criar o seu?
-              </Button>
-            </motion.div>
+            <VerticalCards theme="dark" />
           </div>
         </section>
         <section id="faq" className=" mb-24 group/section relative bg-white lqd-is-in-view">

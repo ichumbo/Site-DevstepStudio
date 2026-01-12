@@ -29,12 +29,12 @@ export default function AugeShowcase() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <span className="text-blue-500 font-bold text-xs uppercase tracking-[0.4em] mb-6 block">
-                Lançamento Recente
+              <span className="text-blue-600 font-bold text-xs uppercase tracking-[0.5em] mb-6 block" style={{opacity: 1, transform: 'none'}}>
+                Site novo
               </span>
               <h2 className="font-syne font-extrabold text-5xl md:text-7xl text-white tracking-tighter leading-none mb-8">
                 Auge <br />
-                <span className="text-zinc-500 italic">Contabilidade.</span>
+                <span className="text-blue-600 italic">Contabilidade.</span>
               </h2>
               <p className="text-zinc-400 text-lg md:text-xl font-medium leading-relaxed mb-10 max-w-md">
                 Um template Next.js de alta performance desenvolvido para o setor contábil. 

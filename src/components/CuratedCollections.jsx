@@ -49,6 +49,7 @@ export default function CuratedCollections() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
+            <span className="text-[#7448ff] font-bold text-xs uppercase tracking-[0.5em] mb-4" style={{opacity: 1, transform: 'none'}}>Trabalhos Selecionados</span>
             <h2 className="font-syne font-extrabold text-6xl md:text-8xl text-black tracking-tighter leading-[0.85]">
               Nossas <br /> 
               <span className="text-[#7448ff] italic">Coleções.</span>
@@ -92,7 +93,7 @@ export default function CuratedCollections() {
             aspect="aspect-[16/10] md:h-[550px]"
             tag="Finance & Tax"
             title="Contabilidade"
-            img="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=1200"
+            img="/public/images/Nossas coleções/1.png"
           />
 
           {/* 2. ACADEMIA (Vertical) */}
@@ -101,7 +102,7 @@ export default function CuratedCollections() {
             aspect="aspect-square md:h-[550px]"
             tag="Fitness & Power"
             title="Academia"
-            img="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=800"
+            img="/public/images/Nossas coleções/2.png"
           />
 
           {/* 3. SUSHI BAR (Médio) */}
@@ -110,7 +111,7 @@ export default function CuratedCollections() {
             aspect="aspect-video md:h-[400px]"
             tag="Japanese Food"
             title="Sushi Bar"
-            img="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&q=80&w=1000"
+            img="/public/images/Nossas coleções/3.png"
           />
 
           {/* 4. AÇAÍ & HEALTHY (Médio/Longo) */}
@@ -119,7 +120,7 @@ export default function CuratedCollections() {
             aspect="aspect-video md:h-[400px]"
             tag="Tropical Food"
             title="Açaí Concept"
-            img="https://images.unsplash.com/photo-1590301157890-4810ed352733?auto=format&fit=crop&q=80&w=1200"
+            img="/public/images/Nossas coleções/5.png"
           />
         </motion.div>
       </div>
