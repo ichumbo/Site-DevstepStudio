@@ -4,146 +4,183 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowUpRight, Globe, ShoppingBag, Zap, Laptop } from 'lucide-react';
-import { Button } from "@/components/button";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Dados dos projetos (Siga este padrão para adicionar novos)
-const allProjects = [
-  { id: 1, category: "sites", title: "SolBikes", tag: "Institucional", img: "/images/Sites/Visual do Projeto Completo.png", link: "https://solbikes.com.br" },
-  { id: 2, category: "ecommerce", title: "Lunetterie", tag: "Shopify", img: "/images/Sites/Visual do Projeto Completo (1).png", link: "https://www.lunetterie.com.br" },
-  { id: 3, category: "landingpages", title: "Set Go", tag: "SaaS LP", img: "/images/Sites/Visual do Projeto Completo (2).png", link: "https://setgoapp.com/" },
-  { id: 4, category: "sites", title: "cÊxito", tag: "Educação", img: "/images/Sites/Visual do Projeto Completo (3).png", link: "https://cexito.com.br" },
-];
+// --- COMPONENTE DE CARD ASSIMÉTRICO COM PARALLAX INTERNO ---
+function EliteCard({ project, setCursorText, index }) {
+  const cardRef = useRef(null);
+  const imgRef = useRef(null);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    // Efeito de Parallax na imagem ao fazer scroll
+    gsap.to(imgRef.current, {
+      y: -60,
+      ease: "none",
+      scrollTrigger: {
+        trigger: containerRef.current,
+        scrub: true
+      }
+    });
+  }, []);
+
+  const handleMouseMove = (e) => {
+    const { left, top, width, height } = cardRef.current.getBoundingClientRect();
+    const x = ((e.clientX - left) / width - 0.5) * 12;
+    const y = ((e.clientY - top) / height - 0.5) * -12;
+
+    gsap.to(cardRef.current, {
+      rotateY: x,
+      rotateX: y,
+      scale: 1.03,
+      duration: 0.6,
+      ease: "power2.out",
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setCursorText("");
+    gsap.to(cardRef.current, {
+      rotateY: 0,
+      rotateX: 0,
+      scale: 1,
+      duration: 1,
+      ease: "elastic.out(1, 0.3)",
+    });
+  };
+
+  return (
+    <div 
+      ref={containerRef}
+      className={`relative w-full mb-32 md:mb-0 ${index % 2 !== 0 ? "md:mt-60" : ""}`}
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 100 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+        onMouseEnter={() => setCursorText("EXPLORAR")}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        className="perspective-1000"
+      >
+        <div
+          ref={cardRef}
+          className="relative aspect-[3/4] rounded-[3.5rem] overflow-hidden bg-zinc-100 shadow-2xl transition-shadow duration-700 hover:shadow-[0_60px_100px_rgba(116,72,255,0.15)]"
+          style={{ transformStyle: "preserve-3d" }}
+        >
+          {/* Imagem com Parallax reverso */}
+          <div className="absolute inset-0 scale-125">
+            <img 
+              ref={imgRef}
+              src={project.img} 
+              alt={project.title}
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          {/* Overlay de Vidro Inferior */}
+          <div 
+            className="absolute bottom-0 left-0 w-full p-10 bg-gradient-to-t from-black/90 via-black/40 to-transparent text-white"
+            style={{ transform: "translateZ(50px)" }}
+          >
+            <span className="text-[#7448ff] font-bold text-[10px] uppercase tracking-[0.3em] mb-3 block">
+              {project.category}
+            </span>
+            <h3 className="text-4xl md:text-5xl font-syne font-black tracking-tighter leading-none">
+              {project.title}
+            </h3>
+            <div className="mt-6 flex items-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity">
+               <div className="h-[1px] w-12 bg-white/30"></div>
+               <span className="text-[10px] font-bold uppercase tracking-widest">Ver Case</span>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
 
 export default function PortfolioSites() {
   const [filter, setFilter] = useState("todos");
-  const sectionRef = useRef(null);
-  const titleRef = useRef(null);
+  const [cursorText, setCursorText] = useState("");
 
-  const categories = [
-    { id: "todos", label: "Todos", icon: <Globe size={16} /> },
-    { id: "sites", label: "Sites", icon: <Laptop size={16} /> },
-    { id: "landingpages", label: "Landing Pages", icon: <Zap size={16} /> },
-    { id: "ecommerce", label: "E-commerce", icon: <ShoppingBag size={16} /> },
-  ];
-
-  const filteredProjects = filter === "todos" 
-    ? allProjects 
-    : allProjects.filter(p => p.category === filter);
-
+  // Scroll suave nativo (sem biblioteca externa)
   useEffect(() => {
-    // Reveal do título estilo DevStep
-    gsap.fromTo(titleRef.current, 
-      { opacity: 0, y: 100, skewY: 5 },
-      { opacity: 1, y: 0, skewY: 0, duration: 1.2, ease: "power4.out" }
-    );
+    document.documentElement.style.scrollBehavior = 'smooth';
+    return () => {
+      document.documentElement.style.scrollBehavior = 'auto';
+    };
   }, []);
 
+  const projects = [
+    { id: 1, category: "sites", title: "SolBikes", img: "/images/topic-1.png" },
+    { id: 2, category: "ecommerce", title: "Lunetterie", img: "/images/topic-3.png" },
+    { id: 3, category: "landingpages", title: "Set Go", img: "/images/topic-5.png" },
+    { id: 4, category: "sites", title: "cÊxito", img: "/images/topic-2.png" },
+  ];
+
   return (
-    <div className="bg-[#fbfbfd] min-h-screen pt-40 pb-20">
-      <div className="container mx-auto px-6">
-        
-        {/* Header da Página */}
-        <header className="max-w-4xl mb-20">
+    <main className="bg-[#fbfbfd] min-h-screen pb-40 selection:bg-[#7448ff] selection:text-white">
+      
+      {/* 1. Header Brutalista / Minimalista */}
+      <section className="container mx-auto px-6 pt-48 pb-32">
+        <div className="max-w-[1200px]">
           <motion.span 
             initial={{ opacity: 0 }} 
             animate={{ opacity: 1 }}
-            className="text-[#7448ff] font-bold text-xs uppercase tracking-[0.5em] mb-6 block"
+            className="text-[#7448ff] font-black text-sm uppercase tracking-[0.5em] mb-8 block"
           >
-            Showcase de Excelência
+            DevStep Studio © 2024
           </motion.span>
-          <h1 ref={titleRef} className="font-syne font-extrabold text-6xl md:text-8xl text-black tracking-tighter leading-[0.85] mb-8">
-            Nossos <br />
-            <span className="text-[#7448ff] italic">Projetos.</span>
+          <h1 className="text-7xl md:text-[13rem] font-syne font-black leading-[0.75] tracking-tighter text-black">
+            CRAFTING <br />
+            <span className="text-zinc-200">BEYOND.</span>
           </h1>
-          <p className="text-zinc-500 text-xl font-medium max-w-2xl leading-relaxed">
-            Explorando as fronteiras do digital com interfaces que convertem e experiências que marcam.
-          </p>
-        </header>
+        </div>
+      </section>
 
-        {/* Filtros Estilo Pill (DNA Apple) */}
-        <nav className="flex flex-wrap gap-4 mb-16">
-          {categories.map((cat) => (
+      {/* 2. Filtro Flutuante Moderno */}
+      <div className="sticky top-12 z-[100] flex justify-center mb-40">
+        <nav className="bg-black/90 backdrop-blur-2xl p-2 rounded-full border border-white/10 flex gap-2 shadow-2xl scale-90 md:scale-100">
+          {["todos", "sites", "landingpages", "ecommerce"].map((cat) => (
             <button
-              key={cat.id}
-              onClick={() => setFilter(cat.id)}
-              className={`flex items-center gap-2 px-8 py-4 rounded-full font-bold text-sm transition-all duration-500 border ${
-                filter === cat.id 
-                ? "bg-black text-white border-black shadow-xl scale-105" 
-                : "bg-white text-zinc-500 border-zinc-200 hover:border-[#7448ff] hover:text-[#7448ff]"
+              key={cat}
+              onClick={() => setFilter(cat)}
+              className={`px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest transition-all duration-500 ${
+                filter === cat ? "bg-[#7448ff] text-white" : "text-zinc-500 hover:text-white"
               }`}
             >
-              {cat.icon}
-              {cat.label}
+              {cat}
             </button>
           ))}
         </nav>
-
-        {/* Grid de Projetos Animada */}
-        <motion.div 
-          layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project) => (
-              <motion.div
-                layout
-                key={project.id}
-                initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-                className="group relative bg-white rounded-[2.5rem] overflow-hidden border border-zinc-100 shadow-sm hover:shadow-2xl transition-all duration-700"
-              >
-                {/* Imagem do Mockup */}
-                <div className="aspect-[16/10] overflow-hidden">
-                  <img 
-                    src={project.img} 
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110"
-                  />
-                  {/* Overlay ao Hover */}
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center backdrop-blur-sm">
-                    <a 
-                      href={project.link} 
-                      target="_blank"
-                      className="bg-white text-black p-6 rounded-full transform translate-y-10 group-hover:translate-y-0 transition-transform duration-500 shadow-2xl"
-                    >
-                      <ArrowUpRight size={32} />
-                    </a>
-                  </div>
-                </div>
-
-                {/* Info do Projeto */}
-                <div className="p-8">
-                  <div className="flex justify-between items-start mb-4">
-                    <span className="text-[10px] font-black text-[#7448ff] uppercase tracking-widest bg-purple-50 px-3 py-1 rounded-md">
-                      {project.tag}
-                    </span>
-                  </div>
-                  <h3 className="text-3xl font-syne font-bold text-black group-hover:text-[#7448ff] transition-colors">
-                    {project.title}
-                  </h3>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
-
-        {/* Footer CTA da Página */}
-        <footer className="mt-32 p-16 bg-black rounded-[3rem] text-center overflow-hidden relative">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#7448ff]/20 rounded-full blur-[100px] pointer-events-none" />
-          <h2 className="text-4xl md:text-5xl font-syne font-bold text-white mb-8 relative z-10">
-            Tem uma ideia inovadora? <br />
-            <span className="text-[#7448ff]">Vamos construir juntos.</span>
-          </h2>
-          <Button color="white" size="large" href="https://wa.link/kdl2a4">
-            Solicitar Orçamento
-          </Button>
-        </footer>
       </div>
-    </div>
+
+      {/* 3. Grid Assimétrica de Projetos */}
+      <section className="container mx-auto px-6 max-w-[1400px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20">
+          <AnimatePresence mode="popLayout">
+            {projects
+              .filter(p => filter === "todos" || p.category === filter)
+              .map((project, index) => (
+                <EliteCard 
+                  key={project.id} 
+                  project={project} 
+                  setCursorText={setCursorText} 
+                  index={index}
+                />
+              ))}
+          </AnimatePresence>
+        </div>
+      </section>
+
+      {/* 4. Texto de Fundo (Kinetic Typography) */}
+      <div className="fixed inset-0 z-[-1] pointer-events-none opacity-[0.02] flex items-center justify-center">
+        <h2 className="text-[40vw] font-black font-syne select-none">STEP</h2>
+      </div>
+
+    </main>
   );
 }

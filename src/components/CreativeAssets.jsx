@@ -79,7 +79,8 @@ export default function CreativeAssets() {
 
 function Card({ item }) {
   return (
-    <div className="asset-card clickable bg-white rounded-[2rem] p-5 border border-zinc-100 transition-all duration-500 hover:border-[#7C3AED] hover:shadow-[0_20px_40px_rgba(124,58,237,0.1)] group cursor-none">
+    <a href="https://wa.link/kdl2a4" target="_blank" rel="noopener noreferrer">
+      <div className="asset-card clickable bg-white rounded-[2rem] p-5 border border-zinc-100 transition-all duration-500 hover:border-[#7C3AED] hover:shadow-[0_20px_40px_rgba(124,58,237,0.1)] group cursor-pointer">
       
       {/* Cabeçalho do Card */}
       <div className="mb-4 flex justify-between items-start">
@@ -121,6 +122,7 @@ function Card({ item }) {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </a>
   );
 }

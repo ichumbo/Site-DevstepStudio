@@ -33,13 +33,14 @@ export default function VerticalCards() {
   return (
     <div className="relative flex flex-wrap lg:flex-nowrap gap-4 justify-center mt-24">
       {steps.map((step, idx) => (
-        <motion.div
-          key={idx}
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: idx * 0.1 }}
-          className="clickable relative group flex-1 min-w-[280px] h-[400px]"
-        >
+        <a href="https://wa.link/kdl2a4" target="_blank" rel="noopener noreferrer">
+          <motion.div
+            key={idx}
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: idx * 0.1 }}
+            className="clickable relative group flex-1 min-w-[280px] h-[400px] cursor-pointer"
+          >
           {/* O Número Flutuante (Impacto) */}
           <div className="absolute -top-12 left-8 z-20">
             <span className="text-8xl font-black font-syne text-zinc-900/5 group-hover:text-[#7C3AED]/20 transition-all duration-500 italic">
@@ -83,7 +84,8 @@ export default function VerticalCards() {
             {/* Efeito de "Luz" interna no Hover */}
             <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-[#7C3AED] blur-[60px] opacity-0 group-hover:opacity-10 transition-opacity duration-500" />
           </div>
-        </motion.div>
+          </motion.div>
+        </a>
       ))}
     </div>
   );

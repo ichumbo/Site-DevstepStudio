@@ -50,13 +50,15 @@ export default function AugeShowcase() {
               </div>
 
               {/* Botão com Clique Suave */}
-              <button 
-                onClick={scrollToContact}
+              <a 
+                href="https://wa.link/kdl2a4"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-4 bg-blue-600 text-white px-10 py-5 rounded-full font-bold hover:bg-blue-500 transition-all group"
               >
                 Solicitar projeto similar
                 <ArrowRight className="group-hover:translate-x-2 transition-transform" />
-              </button>
+              </a>
             </motion.div>
           </div>
 

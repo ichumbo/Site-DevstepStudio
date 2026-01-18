@@ -11,25 +11,29 @@ export default function PortfolioSection() {
       title: "Automotive",
       category: "Site",
       img: "/images/Sites/Visual do Projeto Completo (1).png",
-      color: "#7448ff"
+      color: "#7448ff",
+      link: "https://automaterun-devstep.netlify.app/"
     },
     {
       title: "GymClub",
       category: "LandingPage",
       img: "/images/Sites/Visual do Projeto Completo.png",
-      color: "#000000"
+      color: "#000000",
+      link: "https://wa.link/kdl2a4"
     },
     {
       title: "Dentelo",
       category: "LandingPage",
       img: "/images/Sites/Visual do Projeto Completo (2).png",
-      color: "#7448ff"
+      color: "#7448ff",
+      link: "https://devstep-dentelo.netlify.app/"
     },
     {
       title: "Sofisticatto",
       category: "E-commerce",
       img: "/images/Sites/Visual do Projeto Completo (3).png",
-      color: "#000000"
+      color: "#000000",
+      link: "https://devstep-sofisticatto.netlify.app/"
     }
   ];
 
@@ -105,6 +109,7 @@ function ProjectCard({ project, index }) {
       style={{ y }}
       className="group relative"
     >
+      <a href={project.link} target="_blank" rel="noopener noreferrer" className="block">
       {/* Container da Imagem */}
       <div className="relative aspect-[4/5] md:aspect-[16/10] overflow-hidden rounded-[2rem] bg-zinc-100 border border-zinc-100 shadow-sm transition-all duration-700 group-hover:shadow-2xl group-hover:shadow-purple-200">
         
@@ -138,6 +143,7 @@ function ProjectCard({ project, index }) {
           0{index + 1}
         </div>
       </div>
+      </a>
     </motion.div>
   );
 }
