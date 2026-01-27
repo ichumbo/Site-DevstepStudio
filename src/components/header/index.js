@@ -101,9 +101,7 @@ export const Header = () => {
           whileTap={{ scale: 0.95 }}
         >
           <Link
-            href="https://wa.link/kdl2a4"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/"
             className={`hidden md:flex rounded-md text-base tracking-wide font-syne font-bold py-2 px-5 transition-all duration-300 ${
               scrolled
                 ? "bg-accent text-white hover:bg-accent-foreground"
@@ -154,8 +152,6 @@ export const Header = () => {
           ))}
           <Link
                 href="https://wa.link/kdl2a4"
-                target="_blank"
-                rel="noopener noreferrer"
             className="font-syne font-bold text-white bg-accent px-4 py-2 rounded-md hover:bg-accent-foreground transition-all"
           >
             Bater um papo

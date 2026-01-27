@@ -8,8 +8,6 @@
     "start": "next start"
   },
   "dependencies": {
-    "@studio-freight/lenis": "^1.0.42",
-    "framer-motion": "^12.25.0",
     "gsap": "^3.13.0",
     "lucide-react": "^0.545.0",
     "motion": "^12.23.22",

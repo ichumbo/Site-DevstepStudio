@@ -53,14 +53,6 @@ export default function CasesCarousel() {
             cardsRef.current.forEach((card, index) => {
                 if (card) {
                     portfolioAnimations.setupHoverEffects(card, index);
-                    portfolioAnimations.createHolographicEffect(card);
-                    portfolioAnimations.createScanLine(card);
-                    
-                    // Adicionar glitch nos títulos
-                    const title = card.querySelector('h3');
-                    if (title) {
-                        portfolioAnimations.createGlitchEffect(title);
-                    }
                 }
             });
             
@@ -70,10 +62,6 @@ export default function CasesCarousel() {
             // Criar sistema de partículas avançado
             if (particlesRef.current) {
                 portfolioAnimations.createFloatingParticles(particlesRef.current);
-                portfolioAnimations.createFloatingCrystals(particlesRef.current);
-                portfolioAnimations.createEnergyWaves(particlesRef.current);
-                portfolioAnimations.createLightRays(particlesRef.current);
-                portfolioAnimations.createMagneticParticles(particlesRef.current, cardsRef.current);
             }
             
             // Animação de reveal com efeito de desintegração
@@ -116,35 +104,16 @@ export default function CasesCarousel() {
     }, [activeIndex]);
 
     return (
-        <section ref={sectionRef} className="relative text-white overflow-hidden min-h-screen flex items-center bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900">
-            {/* SVG Wave melhorado */}
+        <section ref={sectionRef} className="relative text-white overflow-hidden min-h-screen flex items-center">
+            {/* SVG Wave */}
             <div className="absolute -top-1 left-0 w-full">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="animate-pulse">
-                    <defs>
-                        <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" stopColor="#f8fafc" stopOpacity="1"/>
-                            <stop offset="50%" stopColor="#e2e8f0" stopOpacity="0.8"/>
-                            <stop offset="100%" stopColor="#f8fafc" stopOpacity="1"/>
-                        </linearGradient>
-                    </defs>
-                    <path fill="url(#waveGradient)" fillOpacity="1" d="M0,96L15,106.7C30,117,60,139,90,149.3C120,160,150,160,180,149.3C210,139,240,117,270,138.7C300,160,330,224,360,208C390,192,420,96,450,90.7C480,85,510,171,540,170.7C570,171,600,85,630,64C660,43,690,85,720,128C750,171,780,213,810,240C840,267,870,277,900,245.3C930,213,960,139,990,133.3C1020,128,1050,192,1080,202.7C1110,213,1140,171,1170,160C1200,149,1230,171,1260,197.3C1290,224,1320,256,1350,256C1380,256,1410,224,1425,208L1440,192L1440,320L1425,320C1410,320,1380,320,1350,320C1320,320,1290,320,1260,320C1230,320,1200,320,1170,320C1140,320,1110,320,1080,320C1050,320,1020,320,990,320C960,320,930,320,900,320C870,320,840,320,810,320C780,320,750,320,720,320C690,320,660,320,630,320C600,320,570,320,540,320C510,320,480,320,450,320C420,320,390,320,360,320C330,320,300,320,270,320C240,320,210,320,180,320C150,320,120,320,90,320C60,320,30,320,15,320L0,320Z"></path>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                    <path fill="#f8fafc" fillOpacity="1" d="M0,96L15,106.7C30,117,60,139,90,149.3C120,160,150,160,180,149.3C210,139,240,117,270,138.7C300,160,330,224,360,208C390,192,420,96,450,90.7C480,85,510,171,540,170.7C570,171,600,85,630,64C660,43,690,85,720,128C750,171,780,213,810,240C840,267,870,277,900,245.3C930,213,960,139,990,133.3C1020,128,1050,192,1080,202.7C1110,213,1140,171,1170,160C1200,149,1230,171,1260,197.3C1290,224,1320,256,1350,256C1380,256,1410,224,1425,208L1440,192L1440,320L1425,320C1410,320,1380,320,1350,320C1320,320,1290,320,1260,320C1230,320,1200,320,1170,320C1140,320,1110,320,1080,320C1050,320,1020,320,990,320C960,320,930,320,900,320C870,320,840,320,810,320C780,320,750,320,720,320C690,320,660,320,630,320C600,320,570,320,540,320C510,320,480,320,450,320C420,320,390,320,360,320C330,320,300,320,270,320C240,320,210,320,180,320C150,320,120,320,90,320C60,320,30,320,15,320L0,320Z"></path>
                 </svg>
             </div>
             
-            {/* Grid de fundo animado */}
-            <div className="absolute inset-0 opacity-10">
-                <div className="absolute inset-0" style={{
-                    backgroundImage: `
-                        linear-gradient(rgba(116, 72, 255, 0.1) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(116, 72, 255, 0.1) 1px, transparent 1px)
-                    `,
-                    backgroundSize: '50px 50px',
-                    animation: 'gridMove 20s linear infinite'
-                }}></div>
-            </div>
-            
-            {/* Container de partículas melhorado */}
-            <div ref={particlesRef} className="absolute inset-0 pointer-events-none overflow-hidden" />
+            {/* Container de partículas */}
+            <div ref={particlesRef} className="absolute inset-0 pointer-events-none" />
             
             <div className="container mx-auto px-6 flex items-center justify-between">
                 {/* Conteúdo à esquerda */}
@@ -171,58 +140,36 @@ export default function CasesCarousel() {
                                         className="portfolio-image object-cover w-full h-full rounded-xl transition-all duration-700 filter brightness-90 contrast-110"
                                     />
                                     
-                                    {/* Overlay melhorado com gradiente dinâmico e efeitos */}
+                                    {/* Overlay melhorado com gradiente dinâmico */}
                                     <div className="overlay absolute inset-0 bg-gradient-to-t from-black/95 via-violet-900/30 to-transparent opacity-0 transition-all duration-500 flex items-end p-8">
                                         <div className="text-white relative z-10">
-                                            {/* Efeitos de luz de fundo */}
-                                            <div className="absolute -top-8 -left-8 w-16 h-16 bg-violet-500/20 rounded-full blur-xl animate-pulse"></div>
-                                            <div className="absolute -top-4 -right-4 w-12 h-12 bg-purple-500/30 rounded-full blur-lg animate-bounce"></div>
-                                            <div className="absolute -bottom-6 -left-6 w-10 h-10 bg-violet-400/25 rounded-full blur-md animate-ping"></div>
-                                            
-                                            <h3 className="text-3xl font-bold mb-3 transform translate-y-4 transition-transform duration-500 group-hover:translate-y-0 bg-gradient-to-r from-white via-violet-200 to-purple-200 bg-clip-text text-transparent relative">
+                                            <div className="absolute -top-4 -left-4 w-12 h-12 bg-violet-500/20 rounded-full blur-xl"></div>
+                                            <h3 className="text-3xl font-bold mb-3 transform translate-y-4 transition-transform duration-500 group-hover:translate-y-0 bg-gradient-to-r from-white to-violet-200 bg-clip-text text-transparent">
                                                 {item.title}
-                                                {/* Efeito de brilho no texto */}
-                                                <div className="absolute inset-0 bg-gradient-to-r from-white via-violet-200 to-purple-200 bg-clip-text text-transparent opacity-0 group-hover:opacity-50 transition-opacity duration-500 blur-sm"></div>
                                             </h3>
-                                            <p className="text-gray-200 text-base leading-relaxed transform translate-y-4 transition-transform duration-500 delay-100 group-hover:translate-y-0 max-w-sm relative">
+                                            <p className="text-gray-200 text-base leading-relaxed transform translate-y-4 transition-transform duration-500 delay-100 group-hover:translate-y-0 max-w-sm">
                                                 {item.description}
-                                                {/* Linha decorativa */}
-                                                <div className="absolute -left-4 top-0 w-1 h-full bg-gradient-to-b from-violet-500 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200"></div>
                                             </p>
                                             
-                                            {/* Botão com efeitos avançados */}
-                                            <button className="mt-6 px-6 py-3 bg-gradient-to-r from-violet-500 to-purple-600 text-white rounded-lg transform translate-y-4 opacity-0 transition-all duration-500 delay-200 group-hover:translate-y-0 group-hover:opacity-100 hover:from-violet-400 hover:to-purple-500 hover:shadow-lg hover:shadow-violet-500/25 font-medium relative overflow-hidden">
-                                                <span className="relative z-10">Ver Projeto →</span>
-                                                {/* Efeito de ondulação no botão */}
-                                                <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-                                                {/* Partículas no botão */}
-                                                <div className="absolute top-1 right-1 w-1 h-1 bg-white/60 rounded-full animate-ping"></div>
-                                                <div className="absolute bottom-1 left-1 w-0.5 h-0.5 bg-white/40 rounded-full animate-pulse"></div>
+                                            {/* Botão com efeito neon */}
+                                            <button className="mt-6 px-6 py-3 bg-gradient-to-r from-violet-500 to-purple-600 text-white rounded-lg transform translate-y-4 opacity-0 transition-all duration-500 delay-200 group-hover:translate-y-0 group-hover:opacity-100 hover:from-violet-400 hover:to-purple-500 hover:shadow-lg hover:shadow-violet-500/25 font-medium">
+                                                Ver Projeto →
                                             </button>
                                         </div>
                                     </div>
                                     
-                                    {/* Efeito de brilho aprimorado com múltiplas camadas */}
+                                    {/* Efeito de brilho aprimorado */}
                                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1500 ease-out opacity-0 group-hover:opacity-100" />
-                                    <div className="absolute inset-0 bg-gradient-to-l from-transparent via-violet-400/20 to-transparent translate-x-full group-hover:-translate-x-full transition-transform duration-2000 ease-out opacity-0 group-hover:opacity-100" />
                                     
-                                    {/* Borda animada com gradiente pulsante */}
-                                    <div className="absolute inset-0 border-2 border-transparent group-hover:border-violet-400/60 rounded-xl transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-violet-500/20">
-                                        <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-violet-500/20 via-purple-500/20 to-violet-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
-                                    </div>
+                                    {/* Borda animada com gradiente */}
+                                    <div className="absolute inset-0 border-2 border-transparent group-hover:border-violet-400/60 rounded-xl transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-violet-500/20" />
                                     
-                                    {/* Efeito de partículas melhorado no hover */}
+                                    {/* Efeito de partículas no hover */}
                                     <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                                         <div className="absolute top-4 right-4 w-2 h-2 bg-violet-400 rounded-full animate-ping"></div>
                                         <div className="absolute bottom-8 left-8 w-1 h-1 bg-purple-400 rounded-full animate-pulse"></div>
                                         <div className="absolute top-1/2 left-4 w-1.5 h-1.5 bg-violet-300 rounded-full animate-bounce"></div>
-                                        <div className="absolute top-8 left-1/2 w-1 h-1 bg-purple-300 rounded-full animate-ping" style={{animationDelay: '0.5s'}}></div>
-                                        <div className="absolute bottom-4 right-8 w-1.5 h-1.5 bg-violet-400 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
-                                        <div className="absolute top-1/3 right-1/4 w-0.5 h-0.5 bg-purple-200 rounded-full animate-bounce" style={{animationDelay: '1.5s'}}></div>
                                     </div>
-                                    
-                                    {/* Efeito de scan line */}
-                                    <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-violet-400 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-pulse"></div>
                                 </div>
                             </div>
                         ))}

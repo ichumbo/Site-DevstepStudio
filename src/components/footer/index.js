@@ -1,129 +1,181 @@
 "use client";
+
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Instagram, Phone, ArrowUp, Send } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { Instagram, Phone } from 'lucide-react';
 
 export const Footer = () => {
-  const container = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1, delayChildren: 0.3 },
-    },
-  };
+    const items = [
+        { label: "Serviços", url: "/services" },
+        { label: "Sobre mim", url: "/about" },
+        { label: "Contato", url: "/contact" },
+    ];
 
-  const itemVariant = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  };
+    const path = usePathname();
+    const [isMenuActive, setIsMenuActive] = useState(false);
 
-  return (
-    <footer className="relative bg-[#09090b] pt-24 pb-10 overflow-hidden">
-      {/* Detalhe de iluminação no topo */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[1px] bg-gradient-to-r from-transparent via-[#7448ff]/50 to-transparent" />
-      
-      <motion.div
-        variants={container}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="container mx-auto px-6 flex flex-col gap-16"
-      >
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 w-full">
-          
-          {/* Lado Esquerdo: Branding e Manifesto */}
-          <motion.div variants={itemVariant} className="md:col-span-5 flex flex-col gap-6">
-            <img src="/images/logo.svg" className="w-32 brightness-0 invert opacity-90" alt="Logo" />
-            <p className="text-zinc-400 text-lg leading-relaxed max-w-sm">
-              Transformamos visões em experiências digitais de alto impacto. 
-              Sua próxima grande ideia começa com um passo.
-            </p>
-            <div className="flex gap-4 mt-2">
-              <SocialButton href="https://instagram.com/devstepstudio" icon={<Instagram size={20} />} />
-              <SocialButton href="https://wa.link/kdl2a4" icon={<Phone size={20} />} />
-            </div>
-          </motion.div>
+    // Variantes de animação
+    const container = {
+        hidden: { opacity: 0, y: 40 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.7, ease: "easeOut" },
+        },
+    };
 
-          {/* Centro: Links Úteis */}
-          <motion.div variants={itemVariant} className="md:col-span-3 flex flex-col gap-6">
-            <h3 className="text-white font-syne font-bold text-sm uppercase tracking-[0.3em]">Navegação</h3>
-            <ul className="flex flex-col gap-4">
-              <FooterLink href="#cases" label="Projetos" />
-              <FooterLink href="#faq" label="Dúvidas" />
-              <FooterLink href="https://wa.link/kdl2a4" label="Contato" />
-            </ul>
-          </motion.div>
+    const itemVariant = {
+        hidden: { opacity: 0, y: 20 },
+        visible: (i) => ({
+            opacity: 1,
+            y: 0,
+            transition: { delay: i * 0.15, duration: 0.5, ease: "easeOut" },
+        }),
+    };
 
-          {/* Lado Direito: Newsletter/CTA Rápido */}
-          <motion.div variants={itemVariant} className="md:col-span-4 flex flex-col gap-6">
-            <h3 className="text-white font-syne font-bold text-sm uppercase tracking-[0.3em]">Dê o próximo passo</h3>
-            <div className="relative group">
-              <input 
-                type="text" 
-                placeholder="Como podemos ajudar?"
-                className="w-full bg-zinc-800/50 border border-zinc-700 rounded-2xl py-4 px-6 text-zinc-300 outline-none focus:border-[#7448ff] transition-all"
-              />
-              <button className="absolute right-2 top-2 bottom-2 bg-[#7448ff] text-white px-4 rounded-xl hover:bg-[#6339e6] transition-colors">
-                <Send size={18} />
-              </button>
-            </div>
-            <span className="text-zinc-500 text-xs tracking-tight italic">Respondemos em menos de 24h.</span>
-          </motion.div>
-        </div>
+    return (
+        <footer className="bg-zinc-900 border-t border-zinc-800">
+            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-accent/50 via-zinc-700 to-accent/50" />
+            <motion.div
+                variants={container}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="container mx-auto pt-24 pb-10 flex flex-col gap-10"
+            >
+                {/* Seções principais */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full">
+                    {/* Seção 1 — Empresa */}
+                    <motion.div
+                        custom={0}
+                        variants={itemVariant}
+                        className="flex flex-col gap-2.5 lg:gap-6"
+                    >
+                        <h3 className="text-lg text-white font-semibold uppercase tracking-wide">
+                            Links Úteis
+                        </h3>
+                        <div className="w-full h-[1px] bg-zinc-700" />
+                        <ul className="flex flex-col gap-1 font-semibold">
+                            <motion.li
+                                whileHover={{ x: 4, color: "#a78bfa" }}
+                                transition={{ type: "spring", stiffness: 400, damping: 12 }}
+                            >
+                                <Link href="#cases" className="text-zinc-300 transition-colors">
+                                    Cases
+                                </Link>
+                            </motion.li>
+                            <motion.li
+                                whileHover={{ x: 4, color: "#a78bfa" }}
+                                transition={{ type: "spring", stiffness: 400, damping: 12 }}
+                            >
+                                <Link href="#faq" className="text-zinc-300 transition-colors">
+                                    Dúvidas
+                                </Link>
+                            </motion.li>
+                            <motion.li
+                                whileHover={{ x: 4, color: "#a78bfa" }}
+                                transition={{ type: "spring", stiffness: 400, damping: 12 }}
+                            >
+                                <Link  href="https://wa.link/kdl2a4" className="text-zinc-300 transition-colors">
+                                    Contato
+                                </Link>
+                            </motion.li>
+                        </ul>
+                    </motion.div>
+ 
+                    {/* Seção 3 — Social / Newsletter */}
+                    <motion.div
+                        custom={2}
+                        variants={itemVariant}
+                        className="flex flex-col gap-2.5 lg:gap-6"
+                    >
+                        <h3 className="text-lg text-white font-semibold uppercase tracking-wide">
+                            Rede Sociais
+                        </h3>
+                        <div className="w-full h-[1px] bg-zinc-700" />
 
-        {/* Rodapé Inferior Gigante (Visual Moderno) */}
-        <motion.div
-          variants={itemVariant}
-          className="pt-10 border-t border-zinc-800/50 flex flex-col md:flex-row justify-between items-end gap-10"
-        >
-          <div className="flex flex-col gap-2">
-            <h2 className="text-6xl md:text-[8rem] font-syne font-black text-zinc-800/20 leading-none select-none tracking-tighter">
-              DEVSTEP
-            </h2>
-            <p className="text-zinc-500 text-sm font-medium tracking-widest uppercase">
-              © 2026 DevStep Studio. Todos os direitos reservados.
-            </p>
-          </div>
+                        <div className="flex flex-col gap-4">
 
-          {/* Botão Voltar ao Topo Estilizado */}
-          <motion.button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            whileHover={{ scale: 1.1, backgroundColor: "#7448ff" }}
-            whileTap={{ scale: 0.9 }}
-            className="group p-6 rounded-full bg-zinc-800 border border-zinc-700 text-white transition-all mb-4"
-          >
-            <ArrowUp size={24} className="group-hover:-translate-y-1 transition-transform" />
-          </motion.button>
-        </motion.div>
-      </motion.div>
-    </footer>
-  );
+                            <motion.a
+                                key='i'
+                                href="https://www.instagram.com/devstepstudio"
+                                target="_blank"
+                                whileHover={{ x: 4, color: "#a78bfa" }}
+                                transition={{ type: "spring", stiffness: 400, damping: 12 }}
+                                className="!text-zinc-200 hover:text-accent text-sm font-medium flex items-center gap-2 "
+                            >
+                                <Instagram className="text-zinc-400" /> Instagram
+                            </motion.a>
+                            <motion.a
+                                key='i2'
+
+                                href="https://wa.link/kdl2a4"
+                                target="_blank"
+                                whileHover={{ x: 4, color: "#a78bfa" }}
+                                transition={{ type: "spring", stiffness: 400, damping: 12 }}
+                                className="!text-zinc-200 hover:text-accent text-sm font-medium flex items-center gap-2 "
+                            >
+                                <Phone className="text-zinc-400" /> WhatsApp
+                            </motion.a>
+                        </div>
+                    </motion.div>
+                </div>
+
+
+
+                {/* Rodapé inferior */}
+                <motion.div
+                    variants={itemVariant}
+                    custom={4}
+                    className="flex flex-col lg:flex-row justify-between lg:gap-4 items-center"
+                >
+                    <div className="flex-1">
+                        <p className="text-2xl w-6/12 text-white lg:text-4xl font-extrabold leading-tight">
+                            © 2025 DevStep. <br /> Todos Direitos Reservados.
+                        </p>
+                    </div>
+
+                    <div className="flex items-center gap-4 mt-6 lg:mt-0">
+
+
+                        {/* Botão voltar ao topo */}
+                        <motion.button
+                            onClick={() =>
+                                window.scrollTo({ top: 0, behavior: "smooth" })
+                            }
+                            whileHover={{
+                                rotate: -10,
+                                scale: 1.1,
+                                backgroundColor: "#18181b",
+                            }}
+                            whileTap={{ scale: 0.9 }}
+                            animate={{
+                                y: [0, -4, 0],
+                            }}
+                            transition={{
+                                repeat: Infinity,
+                                repeatType: "mirror",
+                                duration: 2.5,
+                                ease: "easeInOut",
+                            }}
+                            className="p-3 rounded-full border border-zinc-600 hover:border-zinc-500 transition-colors"
+                        >
+                            <svg
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path d="M12 19V5" stroke="white" strokeWidth="2" />
+                                <path d="M5 12L12 5L19 12" stroke="white" strokeWidth="2" />
+                            </svg>
+                        </motion.button>
+                    </div>
+                </motion.div>
+            </motion.div>
+        </footer>
+    );
 };
-
-// Sub-componentes para manter o código limpo
-function FooterLink({ href, label }) {
-  return (
-    <li>
-      <Link 
-        href={href} 
-        className="text-zinc-400 hover:text-[#7448ff] font-medium transition-all flex items-center gap-2 group"
-      >
-        <span className="w-0 group-hover:w-4 h-[1px] bg-[#7448ff] transition-all" />
-        {label}
-      </Link>
-    </li>
-  );
-}
-
-function SocialButton({ href, icon }) {
-  return (
-    <motion.a
-      href={href}
-      target="_blank"
-      whileHover={{ y: -5, backgroundColor: "#7448ff" }}
-      className="p-3 rounded-xl bg-zinc-800/50 border border-zinc-700 text-white transition-all"
-    >
-      {icon}
-    </motion.a>
-  );
-}
