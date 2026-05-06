@@ -109,10 +109,15 @@ export default function Home() {
 
   const logos = [
     { src: "/images/logo_solbikes.png", width: "w-32" },
+    { src: "/images/logo_europeanmint.png", width: "w-32" },
+    { src: "/images/logo_kids.png", width: "w-32" },
+    { src: "/images/logo_worldsilver.png", width: "w-32" },
+    { src: "/images/logo_land.png", width: "w-32" },
+    { src: "/images/logo_sbacem.png", width: "w-32" },
+    { src: "/images/logo_nossasvozes.png", width: "w-32" },
     { src: "/images/logo_montalto.png", width: "w-36" },
     { src: "/images/empresa_nova.png", width: "w-36" },
     { src: "/images/logo_empresa.png", width: "w-36" },
-    { src: "/images/logo_empresa_one.png", width: "w-24" },
   ];
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -636,7 +641,7 @@ export default function Home() {
                   
                   {/* Card de Preço FIXO */}
                   <div className="bg-zinc-900/50 border border-white/10 p-6 rounded-3xl mb-10 inline-block">
-                    <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest block mb-2">Investimento único</span>
+                    <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest block mb-2">A partir de</span>
                     <div className="flex items-baseline gap-2">
                       <span className="text-4xl font-black text-white">R$ 69,90</span>
                       <span className="text-zinc-600 line-through text-sm">R$ 197,00</span>
