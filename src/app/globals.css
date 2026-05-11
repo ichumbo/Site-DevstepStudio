@@ -272,6 +272,45 @@ background: linear-gradient(180deg,rgba(116, 72, 255, 1) 0%, rgba(116, 72, 255, 
   opacity: 1;
 }
 
+@keyframes testimonials-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes testimonials-marquee-reverse {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+.testimonials-track-base {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.testimonials-track-base:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonials-track-base {
+    animation: none !important;
+    transform: translateX(0) !important;
+  }
+}
+
 /* Animação de pulsação para números gigantes */
 @keyframes number-pulse {
   0%, 100% {

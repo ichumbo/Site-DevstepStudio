@@ -33,9 +33,13 @@ export default function VerticalCards() {
   return (
     <div className="relative flex flex-wrap lg:flex-nowrap gap-4 justify-center mt-24">
       {steps.map((step, idx) => (
-        <a href="https://wa.link/kdl2a4" target="_blank" rel="noopener noreferrer">
+        <a
+          key={step.title}
+          href="https://wa.link/kdl2a4"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <motion.div
-            key={idx}
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: idx * 0.1 }}

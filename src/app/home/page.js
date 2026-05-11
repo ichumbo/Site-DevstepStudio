@@ -18,6 +18,8 @@ import ProjectsGallery from "@/modules/home/gallery";
 import CreativeAssets from "@/components/CreativeAssets";
 import AugeShowcase from "@/components/AugeShowcase";
 import PortfolioSection from "@/components/PortfolioSection";
+import ClubStepSection from "@/components/ClubStepSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -613,6 +615,8 @@ export default function Home() {
 
         <CreativeAssets />
 
+        <ClubStepSection />
+
         <PortfolioSection />
 
         {/* Seção Showcase: Pack de Artes Academia */}
@@ -830,9 +834,6 @@ export default function Home() {
           <div className="container mx-auto px-6 relative z-10">
             <div className="flex flex-col lg:flex-row items-end justify-between mb-16 gap-8">
               <div className="max-w-2xl">
-                 <span className="text-blue-600 font-bold text-xs uppercase tracking-[0.5em] mb-6 block" style={{opacity: 1, transform: 'none'}}>
-                Site novo
-              </span>
                 {/* Mudança de cor dos textos para Branco (contraste com fundo roxo) */}
                 <h2 className="font-syne font-extrabold text-6xl md:text-7xl text-white tracking-tighter leading-[0.9]">
                   Design em <br /> 
@@ -847,6 +848,9 @@ export default function Home() {
             <VerticalCards theme="dark" />
           </div>
         </section>
+
+        <TestimonialsSection />
+
         <section id="faq" className=" mb-24 group/section relative bg-white lqd-is-in-view">
 
           <div className="border border-zinc-200 container"></div>

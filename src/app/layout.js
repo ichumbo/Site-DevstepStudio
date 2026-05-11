@@ -3,7 +3,7 @@ import "./globals.css";
 import { Header } from "@/components/header";
 import {Footer } from "@/components/footer";
 import {ScrollProgressBar } from "@/modules/home/progressBar";
-import CustomCursor from "@/components/CustomCursor";
+import CustomCursor from "@/components/CustomCursor.js";
 
 const InterSans = Inter({
   variable: "--font-inter",

@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { motion, useSpring } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
 export default function CustomCursor() {
   const [isHovering, setIsHovering] = useState(false);
@@ -19,6 +20,8 @@ export default function CustomCursor() {
         target.tagName === 'BUTTON' || 
         target.closest('a') || 
         target.closest('button') ||
+        target.closest('.clickable') ||
+        target.closest('.asset-card') ||
         target.classList.contains('hover-target');
 
       setIsHovering(!!isClickable);
@@ -30,7 +33,7 @@ export default function CustomCursor() {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 w-4 h-4 bg-[#7448ff] rounded-full pointer-events-none z-[9999] mix-blend-difference"
+      className="fixed top-0 left-0 z-[9999] hidden items-center justify-center rounded-full pointer-events-none md:flex"
       style={{
         x: mouseX,
         y: mouseY,
@@ -38,9 +41,15 @@ export default function CustomCursor() {
         translateY: "-50%",
       }}
       animate={{
-        scale: isHovering ? 2.5 : 1,
+        width: isHovering ? 58 : 16,
+        height: isHovering ? 58 : 16,
+        backgroundColor: isHovering ? "#7448ff" : "#000000",
       }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
-    />
+    >
+      {isHovering && (
+        <ArrowUpRight className="h-6 w-6 text-white" strokeWidth={2.5} />
+      )}
+    </motion.div>
   );
 }
