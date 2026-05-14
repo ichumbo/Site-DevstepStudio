@@ -23,7 +23,6 @@ const productCategories = {
     sidebarLabel: "Artes",
     navLabel: "Colecoes",
     eyebrow: "Artes",
-    heading: "Colecoes de artes",
     items: [
       {
         title: "Artes de campanha",
@@ -55,7 +54,6 @@ const productCategories = {
     sidebarLabel: "Sites",
     navLabel: "Sites",
     eyebrow: "Sites",
-    heading: "Sites prontos para lancar",
     items: [
       {
         title: "Landing pages",
@@ -87,7 +85,6 @@ const productCategories = {
     sidebarLabel: "Apps",
     navLabel: "Apps",
     eyebrow: "Apps",
-    heading: "Apps e sistemas web",
     items: [
       {
         title: "Dashboards",
@@ -199,7 +196,7 @@ export default function ClubStepSection() {
                 <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg border border-[#7448ff]/35 text-[#9b7cff]">
                   <ShoppingBag className="h-3.5 w-3.5" />
                 </span>
-                <span>Artes, sites e apps em um so lugar</span>
+                <span>Artes, sites e apps</span>
               </motion.a>
             </div>
 
